@@ -4,12 +4,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/favicon.ico">
-
     <title><?php echo $title ?></title>
-
     <!-- Bootstrap core CSS -->
     <link href="./assets/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="./assets/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
   </head>

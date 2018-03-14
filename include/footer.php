@@ -1,6 +1,6 @@
 <footer class="footer">
       <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
+        <span class="text-muted">Create by IMT academy student Demidov Vitaliy 2018</span>
       </div>
     </footer>
 
@@ -12,3 +12,4 @@
     <script src="./assets/popper.min.js"></script>
     <script src="./assets/bootstrap.min.js"></script>
 <script id="wappalyzer" src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
