@@ -19,9 +19,11 @@
                   <a class="nav-link" href="/index.php?action=store">Магазин<span class="sr-only">(current)</span></a>
               </li>
           </ul>
-          <form class="form-inline mt-2 mt-md-0">
+            <a href="/index.php?action=cart"><i class="fas fa-shopping-cart <?php echo ($action == 'cart') ? 'active' : '' ?>"></i></a>
+
+          <!--<form class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          </form>-->
         </div>
       </nav>
