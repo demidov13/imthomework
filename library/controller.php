@@ -9,6 +9,15 @@ switch ($action) {
 	case 'about':
 		$page = './pages/about.php';
 		break;
+    case 'about':
+        $page = './pages/about.php';
+        break;
+    case 'about':
+        $page = './pages/about.php';
+        break;
+    case 'about':
+        $page = './pages/about.php';
+        break;
 	default:
 		$page = './pages/404.php';
 		break;

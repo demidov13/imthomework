@@ -7,11 +7,17 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item <?php echo ($action == 'home') ? 'active' : '' ?>">
-              <a class="nav-link" href="/index.php?action=home">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/index.php?action=home">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item <?php echo ($action == 'about') ? 'active' : '' ?>">
-              <a class="nav-link" href="/index.php?action=about">About</a>
+              <a class="nav-link" href="/index.php?action=about">О нас</a>
             </li>
+              <li class="nav-item <?php echo ($action == 'article') ? 'active' : '' ?>">
+                  <a class="nav-link" href="/index.php?action=article">Создать<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item <?php echo ($action == 'store') ? 'active' : '' ?>">
+                  <a class="nav-link" href="/index.php?action=store">Магазин<span class="sr-only">(current)</span></a>
+              </li>
           </ul>
           <form class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
