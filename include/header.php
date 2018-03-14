@@ -5,7 +5,7 @@
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
-    <title>Sticky Footer Navbar Template for Bootstrap</title>
+    <title><?php echo $title ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="./assets/bootstrap.min.css" rel="stylesheet">
