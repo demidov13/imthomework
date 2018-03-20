@@ -22,6 +22,9 @@ switch ($action) {
         $page = './views/cart.php';
         $title = "Корзина";
         break;
+    case 'edit':
+        require_once('./actions/edit.php');
+        break;
 	default:
 		$page = './views/404.php';
 		break;

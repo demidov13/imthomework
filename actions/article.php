@@ -11,18 +11,14 @@ if(!empty($_POST)){
     if(strlen($_POST['title']) > 255){
         $errors['title'] = "Тема не может иметь длину больше 255 символов";
     }
-    if(empty($errors)) {
+    if(empty($errors) && $_GET['action'] == "article") {
         $article = $_POST;
         $article['id'] = uniqid();
         if(save($article)){
             header("Location: http://web/");
-        } else {
-            echo "Hello"; exit;
         }
-        
     }
-
-}            
+}
 
         $page = './views/article.php';
         $title = "Добавление статьи";

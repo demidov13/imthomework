@@ -85,3 +85,5 @@ function clear()
 {
     return file_put_contents(DB_USERS, json_encode([]));
 }
+
+
