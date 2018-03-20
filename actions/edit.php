@@ -17,8 +17,6 @@ if(!empty($_POST)) {
         $article['title'] = $_POST['title'];
         $article['content'] = $_POST['content'];
         $article['id'] = $editId;
-        var_dump($editId);
-        var_dump($article); exit;
 
         if(save($article)){
             header("Location: http://web/");
