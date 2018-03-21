@@ -13,8 +13,6 @@ if(!empty($_POST)) {
         $errors['title'] = "Тема не может иметь длину больше 255 символов";
     }
     if(empty($errors)) {
-//        $article['title'] = $_POST['title'];
-//        $article['content'] = $_POST['content'];
         $article = $_POST;
 
         if(save($article)){
