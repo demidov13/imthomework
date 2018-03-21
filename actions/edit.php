@@ -16,7 +16,7 @@ if(!empty($_POST)) {
         $article = $_POST;
 
         if(save($article)){
-            header("Location: http://web/");
+            header("https://demidov-dz.herokuapp.com/");
         }
     }
 
