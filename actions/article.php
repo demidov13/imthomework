@@ -15,7 +15,7 @@ if(!empty($_POST)){
         $article = $_POST;
         $article['id'] = uniqid();
         if(save($article)){
-            header("https://demidov-dz.herokuapp.com/");
+            header("https://demidov-dz.herokuapp.com/index.php?action=home");
         }
     }
 }

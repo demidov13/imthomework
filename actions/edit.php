@@ -16,7 +16,7 @@ if(!empty($_POST)) {
         $article = $_POST;
 
         if(save($article)){
-            header("https://demidov-dz.herokuapp.com/");
+            header("https://demidov-dz.herokuapp.com/index.php?action=home");
         }
     }
 
