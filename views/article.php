@@ -20,6 +20,7 @@
             <span><?=$errors['content']?></span>
             <?php endif?>
         </div>
+            <input type="hidden" name="id" <?php if($_GET['action'] == 'edit'): ?> value="<?=$_GET['id']?>" <?php endif?> <?php if($_GET['action'] == 'article'): ?> value="" <?php endif?>>
         <button type="submit" class="btn btn-primary">Сохранить</button>
         <button type="button" class="btn btn-danger">Удалить</button>
         </form>

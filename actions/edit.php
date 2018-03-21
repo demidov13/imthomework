@@ -1,7 +1,6 @@
 <?php
 require_once('./library/driver.php');
 $article = find($_GET['id']);
-$editId = $article['id'];
 $errors = [];
 if(!empty($_POST)) {
     if (empty($_POST['title'])) {
@@ -14,9 +13,9 @@ if(!empty($_POST)) {
         $errors['title'] = "Тема не может иметь длину больше 255 символов";
     }
     if(empty($errors)) {
-        $article['title'] = $_POST['title'];
-        $article['content'] = $_POST['content'];
-        $article['id'] = $editId;
+//        $article['title'] = $_POST['title'];
+//        $article['content'] = $_POST['content'];
+        $article = $_POST;
 
         if(save($article)){
             header("Location: http://web/");
