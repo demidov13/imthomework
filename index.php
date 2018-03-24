@@ -1,3 +1,36 @@
+
+<?php
+// * Выучить константы php
+// is_dir
+// mkdir
+// file_get_contents
+// file_put_contents
+// scandir
+// __DIR__
+// dirname
+// fopen, fclose, fgets, fwrite
+
+require_once("store.php");
+$user1 = [
+  'name' => 'Vit',
+  'email' => 'vit@gmail.com'
+];
+$user2 = [
+  'name' => 'Anita',
+  'email' => 'Anita@gmail.com'
+];
+$users[] = $user1;
+$users[] = $user2;
+if(save($users)){
+  echo "Сохранилось";
+} else {
+  echo "Не сохранилось";
+}
+
+
+exit;
+?>
+
 <?php require_once "library/controller.php" ?>
 <!DOCTYPE html>
 <!-- saved from url=(0064)https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/ -->
