@@ -29,7 +29,7 @@ if(!empty($_POST)){
             $article['id'] = uniqid();
             $article['image'] = upload($article['id']);
             if(save($article)){
-                header("Location: http://web/");
+                header("Location: /index.php?action=home");
             }
         }
     }else{
