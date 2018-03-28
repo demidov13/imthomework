@@ -1,7 +1,11 @@
 <?php
 require_once('./library/driver.php');
 require_once('./library/fs.php');
-$article = find($_GET['id']);
+if(!array_key_exists('id', $_GET)){
+    $article = find($_POST['id']);
+}else{
+    $article = find($_GET['id']);
+}
 $errors = [];
 if(!empty($_POST)) {
     if(empty($_POST['title'])) {

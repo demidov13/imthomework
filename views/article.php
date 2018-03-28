@@ -26,7 +26,12 @@
                 <br><span><?=$errors['image']?></span>
             <?php endif?>
         </div>
-            <input type="hidden" name="id" <?php if($_GET['action'] == 'edit'): ?> value="<?=$_GET['id']?>" <?php endif?> <?php if($_GET['action'] == 'article'): ?> value="" <?php endif?>>
+            <input type="hidden" name="id" 
+            <?php if($_GET['action'] == 'edit' && array_key_exists('id', $_GET)): ?> value="<?=$_GET['id']?>" 
+            <?php endif?> 
+            <?php if($_GET['action'] == 'edit' && !array_key_exists('id', $_GET)): ?> value="<?=$_POST['id']?>" 
+            <?php endif?>
+            <?php if($_GET['action'] == 'article'): ?> value="" <?php endif?>>
         <button type="submit" class="btn btn-primary">Сохранить</button>
         <button type="button" class="btn btn-danger">Удалить</button>
         </form>
