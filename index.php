@@ -1,4 +1,7 @@
-<?php require_once "library/controller.php" ?>
+<?php 
+require_once "library/helper.php";
+require_once "library/controller.php";
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0064)https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/ -->
 <html lang="en">
