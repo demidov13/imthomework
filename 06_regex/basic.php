@@ -18,6 +18,7 @@ $matches = [];
 preg_match('/def/', $string, $matches);
 var_dump($matches);
 
+
 //Экранирование
 $path = 'app/data/images';
 // $result = preg_match('/app\/data\/images/', $path);
