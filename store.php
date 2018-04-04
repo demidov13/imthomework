@@ -86,3 +86,62 @@ $template = <<<HTML
     </div>
 HTML
 ;
+
+$searchTab = '/\{\{tab\}\}.*\{\{\/tab\}\}/ms';
+preg_match($searchTab, $template, $stab);
+$tab = $stab[0];
+$searchContent = '/\{\{content\}\}.*\{\{\/content\}\}/ms';
+preg_match($searchContent, $template, $scont);
+$cont = scont[0];
+$index = 1;
+
+foreach($data as $value){
+    $label = $value['label'];
+    $patterns[0] = '/\{\{index\}\}/ms';
+    $patterns[1] = '/\{\{label\}\}/ms';
+    $replacements[0] = $index;
+    $replacements[1] = $label;
+    if($index != 1) {
+        $patterns[2] = '/class="nav-link active"/';
+        $replacements[2] = 'class="nav-link"';
+    }
+    $newTab = preg_replace($patterns, $replacements, $tab);
+    $tabs = $tabs . $newTab;
+
+    foreach($value as $key => $lang){
+
+        if($key == "items"){
+            $newCont = preg_replace('/\{\{title\}\}/', $lang['label'], $cont)
+            
+        }
+
+    }
+
+    $index++;
+}
+
+$pattabs[0] = '/\{\{tab\}\}/';
+$pattabs[1] = '/\{\{\/tab\}\}/';
+$replasetab[0] = '';
+$replasetab[1] = '';
+$tabs = preg_replace($pattabs, $replasetab, $tabs);
+
+$content = preg_replace($searchTab, $tabs, $template);
+
+
+
+
+
+/*
+$patterns['0'] = '/\{\{tab\}\}/';
+$replacements['0'] = '<?for($i = 0; $i < count($data); $i++):?>';
+$patterns['1'] = '/\{\{\/tab\}\}/';
+$replacements['1'] = '<?endfor;?>';
+$patterns['2'] = '/\{\{label\}\}/';
+$replacements['2'] = '<?=$data[\'$i\'][\'label\']?>';
+$patterns['3'] = '/\{\{index\}\}/';
+$replacements['3'] = '$i';
+ksort($patterns);
+ksort($replacements);
+$content = preg_replace($patterns, $replacements, $template);
+*/
