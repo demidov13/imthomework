@@ -8,9 +8,7 @@ $data = [
                         'PHP Basic',
                         'PHP Yii2',
                         'PHP Laravel',
-                        'PHP Symfony',
-                        'PHP Cake',
-                        'PHP Zend'     
+                        'PHP Symfony'   
                 ],
             ],
             'python' => [
@@ -99,40 +97,25 @@ $replasetab[0] = '';
 $replasetab[1] = '';
 $tab = preg_replace($pattabs, $replasetab, $tab);
 
-// Вырезаем шаблон content и удаляем плейсхолдеры
+// Вырезаем шаблон content
 $searchContent = '/\{\{content\}\}.*\{\{\/content\}\}/ms';
 preg_match($searchContent, $template, $scont);
 $cont = $scont[0];
-// $patcont[0] = '/\{\{content\}\}/';
-// $patcont[1] = '/\{\{\/content\}\}/';
-// $replasecont[0] = '';
-// $replasecont[1] = '';
-// $cont = preg_replace($patcont, $replasecont, $cont);
 
-// Вырезаем шаблон block и удаляем плейсхолдеры
+// Вырезаем шаблон block
 $searchBlock = '/\{\{block\}\}.*\{\{\/block\}\}/ms';
 preg_match($searchBlock, $template, $sblock);
 $block = $sblock[0];
-// $patblock[0] = '/\{\{block\}\}/';
-// $patblock[1] = '/\{\{\/block\}\}/';
-// $replaseblock[0] = '';
-// $replaseblock[1] = '';
-// $block = preg_replace($patblock, $replaseblock, $block);
 
-// Вырезаем шаблон services и удаляем плейсхолдеры
+// Вырезаем шаблон services
 $searchServices = '/\{\{services\}\}.*\{\{\/services\}\}/ms';
 preg_match($searchServices, $template, $sserv);
 $service = $sserv[0];
-// $patserv[0] = '/\{\{services\}\}/';
-// $patserv[1] = '/\{\{\/services\}\}/';
-// $replaseserv[0] = '';
-// $replaseserv[1] = '';
-// $service = preg_replace($patserv, $replaseserv, $service);
 
 // Определяем начальный индекс табов
 $index = 1;
 
-//создаем блоки tab и content, определяем в них индексы и классы
+//создаем новые блоки {{tab}} и {{content}}, определяем в них индексы и классы
 foreach($data as $cliserv){
     $label = $cliserv['label'];
     $patterns[0] = '/\{\{index\}\}/';
@@ -158,35 +141,38 @@ foreach($data as $cliserv){
     $index++;
 }
 
-// Определяем количество табов
+// Определяем количество плейсхолдеров {{content}}
 $searchIndexInContent = '/\{\{content\}\}.+(id="tab-\d").+\{\{\/content\}\}/sU';
 preg_match_all($searchIndexInContent, $contents, $indexPocket);
 
-//Создаем блоки block и services
+//Создаем контент в {{block}} и {{services}}
 foreach($data as $cliserv){    
-    for($i = 0; $i < count($indexPocket[1]); $i++){
-        $testIndex = $i + 1;
-        if($cliserv['index'] == $testIndex){
-            $editContent = $indexPocket[0][$i];
-            foreach($cliserv['items'] as $languages){
-                $newBlock = $block;
+    for($i = 0; $i < count($indexPocket[1]); $i++){         // перебираем количество плейсхолдеров {{content}}
+        $testIndex = $i + 1;                                // Нужный нам id таба всегда будет равен значению $i+1
+        if($cliserv['index'] == $testIndex){                // проверяем соответствие индексов
+            $editContent = $indexPocket[0][$i];             // Выбираем для редактирования {{content}} с индексом, соответствующим индекусу массива
+            foreach($cliserv['items'] as $languages){       // перебираем языки программирования
+                $newBlock = $block;                         // создаем новый {{block}} и заполняем в нем {{title}}
                 $newBlock = preg_replace('/\{\{title\}\}/', $languages['label'], $newBlock);
-                foreach($languages['services'] as $serviceTitle){
-                    $newServise = $service;
+                foreach($languages['services'] as $serviceTitle){       // перебираем дисциплины
+                    $newServise = $service;                 // создаем новый {{services}} и заполняем в нем {{service-title}}
                     $newServise = preg_replace('/\{\{service-title\}\}/', $serviceTitle, $newServise);
-                    $services = $services . $newServise;
+                    $services = $services . $newServise;    // объединяем плейсхолдеры {{services}}
                 }
-                $newBlock = preg_replace($searchServices, $services, $newBlock);
+                $newBlock = preg_replace($searchServices, $services, $newBlock);  // заполняем и объединяем {{block}}
                 $blocks = $blocks . $newBlock;
+                $services = "";                             // обнуляем {{services}}
             }
-            $contentWithBlocks = preg_replace($searchBlock, $blocks, $editContent);
-            $allContents = $allContents . $contentWithBlocks;
+            $contentWithBlocks = preg_replace($searchBlock, $blocks, $editContent);   // Заполняем проиндексировванный {{content}} 
+            $allContents = $allContents . $contentWithBlocks;                         // объединяем плейсхолдеры {{content}}
+            $blocks = "";                                   // обнуляем {{block}}
         }
     }    
 }
+
 $contents = $allContents;
 
-// Удаляем плейсхолдеры
+// Удаляем символы плейсхолдеров
 $patcont[0] = '/\{\{content\}\}/';
 $patcont[1] = '/\{\{\/content\}\}/';
 $patcont[2] = '/\{\{services\}\}/';
