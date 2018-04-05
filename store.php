@@ -23,7 +23,8 @@ $data = [
                 ]
             ]
         ],
-        'label' => 'Server-Side'
+        'label' => 'Server-Side',
+        'index' => '1'
     ],
     'client' => [
         'items' => [
@@ -49,7 +50,8 @@ $data = [
                 ]
             ]
         ],
-        'label' => 'Client-Side'
+        'label' => 'Client-Side',
+        'index' => '2'
     ]
 ];
 
@@ -87,21 +89,52 @@ $template = <<<HTML
 HTML
 ;
 
+// Вырезаем шаблон tab и удаляем плейсхолдеры
 $searchTab = '/\{\{tab\}\}.*\{\{\/tab\}\}/ms';
 preg_match($searchTab, $template, $stab);
 $tab = $stab[0];
+$pattabs[0] = '/\{\{tab\}\}/';
+$pattabs[1] = '/\{\{\/tab\}\}/';
+$replasetab[0] = '';
+$replasetab[1] = '';
+$tab = preg_replace($pattabs, $replasetab, $tab);
+
+// Вырезаем шаблон content и удаляем плейсхолдеры
 $searchContent = '/\{\{content\}\}.*\{\{\/content\}\}/ms';
 preg_match($searchContent, $template, $scont);
 $cont = $scont[0];
+// $patcont[0] = '/\{\{content\}\}/';
+// $patcont[1] = '/\{\{\/content\}\}/';
+// $replasecont[0] = '';
+// $replasecont[1] = '';
+// $cont = preg_replace($patcont, $replasecont, $cont);
+
+// Вырезаем шаблон block и удаляем плейсхолдеры
 $searchBlock = '/\{\{block\}\}.*\{\{\/block\}\}/ms';
 preg_match($searchBlock, $template, $sblock);
 $block = $sblock[0];
-$searchServices = '/\{\{services\}\}.*\{\{\/services\}\}/s';
+// $patblock[0] = '/\{\{block\}\}/';
+// $patblock[1] = '/\{\{\/block\}\}/';
+// $replaseblock[0] = '';
+// $replaseblock[1] = '';
+// $block = preg_replace($patblock, $replaseblock, $block);
 
+// Вырезаем шаблон services и удаляем плейсхолдеры
+$searchServices = '/\{\{services\}\}.*\{\{\/services\}\}/ms';
+preg_match($searchServices, $template, $sserv);
+$service = $sserv[0];
+// $patserv[0] = '/\{\{services\}\}/';
+// $patserv[1] = '/\{\{\/services\}\}/';
+// $replaseserv[0] = '';
+// $replaseserv[1] = '';
+// $service = preg_replace($patserv, $replaseserv, $service);
+
+// Определяем начальный индекс табов
 $index = 1;
 
-foreach($data as $value){
-    $label = $value['label'];
+//создаем блоки tab и content, определяем в них индексы и классы
+foreach($data as $cliserv){
+    $label = $cliserv['label'];
     $patterns[0] = '/\{\{index\}\}/';
     $patterns[1] = '/\{\{label\}\}/';
     $replacements[0] = $index;
@@ -112,24 +145,7 @@ foreach($data as $value){
     }
     $newTab = preg_replace($patterns, $replacements, $tab);
     $tabs = $tabs . $newTab;
-
-    foreach($value as $key => $lang){
-        if($key == "items"){            
-            foreach($lang as $langItems) {
-               foreach($langItems as $lastServices){
-                    preg_match($searchServices, $block, $sserv);
-                    $service = $sserv[0];
-                    for($i = 0; $i < count($lastServices); $i++){
-                    $newServise = preg_replace('/\{\{service-title\}\}/', $lastServices[$i], $service);
-                    $services = $services . $newServise;
-                    $newBlock = preg_replace($searchServices, $services, $block);
-                    }
-               }
-            $newBlock = preg_replace('/\{\{title\}\}/', $langItems['label'], $newBlock);
-            $blocks = $blocks . $newBlock;
-            }           
-        }              
-    }
+    
     $pathtml[0] = '/\{\{index\}\}/';
     $replasehtml[0] = $index;
     if(isset($contents)){
@@ -137,18 +153,40 @@ foreach($data as $value){
         $replasehtml[1] = 'class="tab-pane fade"';
                 }
     $newCont = preg_replace($pathtml, $replasehtml, $cont);
-    $newCont = preg_replace($searchBlock, $blocks, $newCont);
     $contents = $contents . $newCont;
     
     $index++;
 }
 
-$pattabs[0] = '/\{\{tab\}\}/';
-$pattabs[1] = '/\{\{\/tab\}\}/';
-$replasetab[0] = '';
-$replasetab[1] = '';
-$tabs = preg_replace($pattabs, $replasetab, $tabs);
+// Определяем количество табов
+$searchIndexInContent = '/\{\{content\}\}.+(id="tab-\d").+\{\{\/content\}\}/sU';
+preg_match_all($searchIndexInContent, $contents, $indexPocket);
 
+//Создаем блоки block и services
+foreach($data as $cliserv){    
+    for($i = 0; $i < count($indexPocket[1]); $i++){
+        $testIndex = $i + 1;
+        if($cliserv['index'] == $testIndex){
+            $editContent = $indexPocket[0][$i];
+            foreach($cliserv['items'] as $languages){
+                $newBlock = $block;
+                $newBlock = preg_replace('/\{\{title\}\}/', $languages['label'], $newBlock);
+                foreach($languages['services'] as $serviceTitle){
+                    $newServise = $service;
+                    $newServise = preg_replace('/\{\{service-title\}\}/', $serviceTitle, $newServise);
+                    $services = $services . $newServise;
+                }
+                $newBlock = preg_replace($searchServices, $services, $newBlock);
+                $blocks = $blocks . $newBlock;
+            }
+            $contentWithBlocks = preg_replace($searchBlock, $blocks, $editContent);
+            $allContents = $allContents . $contentWithBlocks;
+        }
+    }    
+}
+$contents = $allContents;
+
+// Удаляем плейсхолдеры
 $patcont[0] = '/\{\{content\}\}/';
 $patcont[1] = '/\{\{\/content\}\}/';
 $patcont[2] = '/\{\{services\}\}/';
@@ -163,10 +201,12 @@ $replasecont[4] = '';
 $replasecont[5] = '';
 $contents = preg_replace($patcont, $replasecont, $contents);
 
+//Заливаем контент в шаблон
 $patrelease[0] = $searchTab;
 $patrelease[1] = $searchContent;
 $reprelease[0] = $tabs;
 $reprelease[1] = $contents;
 $releaseСontent = preg_replace($patrelease, $reprelease, $template);
 
+//Запускаем контент
 $content = $releaseСontent;
