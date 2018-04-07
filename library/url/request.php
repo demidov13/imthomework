@@ -17,7 +17,7 @@ function addRule($alias, $callback)
         $name = $match[1];
         $pattern = $match[2];
 
-        return '('.strtr($pattern, $types).')';
+        return '(?<'.$name.'>'.strtr($pattern, $types).')';
     }, $alias);
     $rules[$id] = $callback;
 }
@@ -29,6 +29,11 @@ function start()
     foreach($rules as $pattern => $callback){
 
         if(preg_match('#'.$pattern.'#', $uri, $params)){
+            foreach($params as $k => $v){
+                if(is_int($k)){
+                    unset($params[$k]);
+                }
+            }
             $callback($params);
         }
     }
