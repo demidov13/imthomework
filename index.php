@@ -1,4 +1,12 @@
-<?php 
+<?php
+require_once "library/url/request.php";
+
+addRule('/blog/{id:d}', function($params){
+  var_dump($params);
+});
+start();
+exit;
+
 require_once "library/helper.php";
 require_once "library/controller.php";
 ?>
