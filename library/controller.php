@@ -8,19 +8,16 @@ switch ($action) {
     require_once('./actions/home.php');
 		break;
 	case 'about':
-		$page = './views/about.php';
-        $title = "О нас";
+    require_once('./actions/about.php');
 		break;
     case 'article':
     require_once('./actions/article.php');
         break;
     case 'store':
-        $page = './views/store.php';
-        $title = "Магазин";
+    require_once('./actions/store.php');
         break;
     case 'cart':
-        $page = './views/cart.php';
-        $title = "Корзина";
+    require_once('./actions/cart.php');
         break;
     case 'edit':
         require_once('./actions/edit.php');
