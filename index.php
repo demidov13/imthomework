@@ -1,5 +1,11 @@
 <?php
-session_start(); 
+session_start();
+require_once "library/url/request.php";
+
+addRule('/blog/{id:d}', function($params){
+    var_dump($params);
+});
+start();
 require_once "library/controller.php" 
 ?>
 <!DOCTYPE html>

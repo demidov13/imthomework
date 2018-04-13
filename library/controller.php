@@ -1,5 +1,8 @@
 <?php
 require_once('./library/driver.php');
+$query = $_SERVER['QUERY_STRING'];
+$params = explode('/', $query);
+list($action, $id) = $params;
 $action = empty($_GET['action']) ? 'home' : $_GET['action'];
 $page = null;
 $title = "";
