@@ -1,12 +1,12 @@
 <?php
 session_start();
+require_once "library/controller.php";
 require_once "library/url/request.php";
 
 addRule('/blog/{id:d}', function($params){
     var_dump($params);
 });
 start();
-require_once "library/controller.php" 
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0064)https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/ -->
