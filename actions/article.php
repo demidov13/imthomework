@@ -1,15 +1,4 @@
 <?php
-// $map = [
-//     'image/jpeg' => '.jpg',
-//     'image/png' => '.png'
-// ];
-// if(!empty($_POST)){
-//     $name = uniqid();
-//     if(file_exists($_FILES['file']['tmp_name'])) {
-//        copy($_FILES['file']['tmp_name'], dirname(__DIR__).'/upload/'.$name.''.$map[$_FILES['file']['type']]);
-// }
-// }
-
 require_once('./library/driver.php');
 require_once('./library/fs.php');
 $article = $_POST;
@@ -29,12 +18,12 @@ if(!empty($_POST)){
             $article['id'] = uniqid();
             $article['image'] = upload($article['id']);
             if(save($article)){
-                header("Location: /index.php?action=home");
+                header("Location: /");
             }
         }
     }else{
         $errors['image'] = "Выберите, пожалуйста, файл в формате .jpg/.png";
     }
 }
-        $page = './views/article.php';
         $title = "Добавление статьи";
+        render('article', ['article' => $article]);

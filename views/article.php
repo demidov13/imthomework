@@ -1,7 +1,7 @@
       <h2 class="mt-5">Добавить новую статью</h2>
 <div class="row mt-5">
     <div class="col">
-        <form name="article" method="post" enctype="multipart/form-data" <?php if($_GET['action'] == 'edit'): ?> action="index.php?action=edit" <?php endif?> <?php if($_GET['action'] == 'article'): ?> action="index.php?action=article" <?php endif?>>
+        <form name="article" method="post" enctype="multipart/form-data" <?php if($_GET['action'] == 'edit'): ?> action="/edit" <?php endif?> <?php if($_GET['action'] == 'article'): ?> action="/article" <?php endif?>>
         <div class="form-group">
             <label for="title">Название</label>
             <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Введите название..." <?php if(empty($_POST) && $_GET['action'] == 'edit'): ?> value="<?=$article['title']?>" <?else:?> value="<?=$_POST['title']?>" <?endif?>>

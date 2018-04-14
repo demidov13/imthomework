@@ -1,20 +1,23 @@
 <?php
-//  // Вложенные шаблоны
-// ob_start();
-// require_once './include/test.php';
-// $html = ob_get_clean();
-// echo $html;
-
-
-// exit;
-
 session_start();
-require_once "library/controller.php";
+require_once('./library/driver.php');
+require_once('./library/view.php');
 require_once "library/url/request.php";
+// require_once "library/controller.php";
 
-addRule('/blog/{id:d}', function($params){
-
+addRule('/', 'home', function($params){
+$articles = findAll();
+$title = "Главная";
+render('home', ['articles' => $articles]);
 });
+addRule('/article', 'new', function($params){
+  require_once('./actions/article.php');
+});
+addRule('/about', 'about', function($params){
+  $title = "О нас";
+  render('about');
+});
+
 start();
 ?>
 <!DOCTYPE html>

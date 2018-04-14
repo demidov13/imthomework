@@ -1,6 +1,6 @@
  <h1 class="mt-5">Домашняя страница</h1>
- <?php if(file_exists('./data/users.json') && !empty($params['articles'])): ?>
- <?php foreach($params['articles'] as $article): ?>
+ <?php if(file_exists('./data/users.json') && !empty($articles)): ?>
+ <?php foreach($articles as $article): ?>
     <div class="col-md-8">
           <div class="card flex-md-row mb-4 box-shadow h-md-250">
             <div class="card-body d-flex flex-column align-items-start">
