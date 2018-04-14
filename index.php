@@ -1,4 +1,13 @@
 <?php
+//  // Вложенные шаблоны
+// ob_start();
+// require_once './include/test.php';
+// $html = ob_get_clean();
+// echo $html;
+
+
+// exit;
+
 session_start();
 require_once "library/controller.php";
 require_once "library/url/request.php";
@@ -19,10 +28,8 @@ start();
 
     <!-- Begin page content -->
     <main role="main" class="container">
-     <?php require_once $page; ?>
+     <?=$content?>
     </main>
-
     <?php require_once "include/footer.php" ?>
-
 </body>
 </html>
