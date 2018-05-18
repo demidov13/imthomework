@@ -6,13 +6,13 @@
       <th scope="col">name</th>
       <th scope="col">articul</th>
       <th scope="col">brand</th>
-      <th scope="col">image_path</th>
       <th scope="col">description</th>
       <th scope="col">price</th>
       <th scope="col">category_id</th>
       <th scope="col">created_at</th>
       <th scope="col">updated_at</th>
       <th scope="col">publish</th>
+      <th scope="col">image_path</th>
       <th scope="col">Опции</th>
     </tr>
   </thead>

@@ -1,15 +1,15 @@
 <?php
-require_once "classes/Sql.php";
+// require_once "classes/Sql.php";
 
-class SqlCategories extends Sql
-{
-	public function create()
-	{
-		return echo "hello";
-	}
+// class SqlCategories extends Sql
+// {
+// 	public function create()
+// 	{
+// 		return echo "hello";
+// 	}
 
-	public function update()
-	{
-		return echo "hello";
-	}
-}
+// 	public function update()
+// 	{
+// 		return echo "hello";
+// 	}
+// }
