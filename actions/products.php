@@ -17,6 +17,7 @@ if(isset($_POST['updateComplete'])){
   $oldRow = $sqlProducts->get("products", $id);
   $sqlProducts->update($newRow, $oldRow, $id);
 
+  // $arrUpdate = $_POST;
   // $id = (int) $arrUpdate['id'];
   // $articul = (int) $arrUpdate['articul'];
   // $price = (int) $arrUpdate['price'];

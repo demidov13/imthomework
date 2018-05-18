@@ -14,4 +14,8 @@ class SqlProducts extends Sql
 		}
 	}
 
+	// public function update($id, $name, $articul, $brand, $description, $price, $publish, $image_path) {
+	// 	mysqli_query($this->mysqli, "UPDATE products SET name = $name, articul = $articul, brand = $brand, description = $description, price = $price, publish = $publish, image_path = $image_path WHERE id = $id");
+	// }
+
 }
