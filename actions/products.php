@@ -1,7 +1,7 @@
 <?php
-require_once "classes/SqlProducts.php";
+require_once "classes/Sql.php";
 
-$sqlProducts = new SqlProducts();
+$sqlProducts = new Sql();
 
 $sqlProducts->connect();
 
@@ -16,13 +16,6 @@ if(isset($_POST['updateComplete'])){
   $id = $newRow['id'];
   $oldRow = $sqlProducts->get("products", $id);
   $sqlProducts->update($newRow, $oldRow, $id);
-
-  // $arrUpdate = $_POST;
-  // $id = (int) $arrUpdate['id'];
-  // $articul = (int) $arrUpdate['articul'];
-  // $price = (int) $arrUpdate['price'];
-  // $publish = (int) $arrUpdate['publish'];
-  // $sqlProducts->update($id, $newRow['name'], $articul, $newRow['brand'], $newRow['description'], $price, $publish, $newRow['image_path']);
 
 } elseif(isset($_POST['updateCancel'])){
   $_POST = [];

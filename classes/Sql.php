@@ -33,4 +33,14 @@ class Sql
 	{
 		mysqli_query($this->mysqli, "DELETE FROM $table WHERE id=$id");
 	}
+
+	public function update($newArr, $oldArr, $id)
+	{
+		$update = array_diff_assoc($newArr, $oldArr);
+		foreach ($update as $name => $value) {
+			if(!empty($value)){
+				mysqli_query($this->mysqli, "UPDATE products SET $name = '$value' WHERE id = $id");
+			}
+		}
+	}
 }

@@ -28,12 +28,20 @@
   <li class="nav-item">
     <a class="nav-link <?php echo ($_GET['actions'] == 'articles') ? 'active' : '' ?>" href="index.php?actions=articles">Статьи</a>
   </li>
+   <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle <?php echo ($_GET['actions'] == 'xml' || $_GET['actions'] == 'json') ? 'active' : '' ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Экспорт</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="/actions/export.php?option=xml" target="_blank">XML</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="/actions/export.php?option=json" target="_blank"">JSON</a>
+    </div>
+  </li>
 </ul>
   </header>   
   <main>
     <?php
       if(empty($_GET['actions'])){
-          echo "</br><h3>Добро пожаловать в панель управления.</br>Для начала работы выберите таблицу в верхнем меню.</h3>";
+          echo "</br><h3 style='margin-left:30px'>Добро пожаловать в панель управления.</br>Для начала работы выберите таблицу в верхнем меню.</h3>";
       }else{
         $actions = "actions/".$_GET['actions'].".php";
         require_once $actions;
