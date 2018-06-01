@@ -31,9 +31,11 @@
    <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle <?php echo ($_GET['actions'] == 'xml' || $_GET['actions'] == 'json') ? 'active' : '' ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Экспорт</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="/actions/export.php?option=xml" target="_blank">XML</a>
+      <a class="dropdown-item" href="/actions/export.php?option=xml" target="_blank">файл XML</a>
+      <a class="dropdown-item" href="/actions/export.php?option=json" target="_blank">файл JSON</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="/actions/export.php?option=json" target="_blank"">JSON</a>
+      <a class="dropdown-item" href="/actions/export/xml.php" target="_blank">echo XML</a>
+      <a class="dropdown-item" href="/actions/export/json.php" target="_blank">echo JSON</a>
     </div>
   </li>
 </ul>
