@@ -13,6 +13,5 @@ foreach($arrProducts as $key => $product){
         }
     }
 }
-var_dump($arrProducts); exit;
 $json = json_encode($arrProducts);
 echo $json;
